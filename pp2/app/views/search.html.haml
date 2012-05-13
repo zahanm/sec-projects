@@ -1,0 +1,25 @@
+.page-header
+  %h1 Search
+%form.form-search(method="get" action="/search")
+  %input.search-query(type="text" name="q" placeholder="Name" autofocus=true)
+  %button.btn(type="submit") Search
+
+- if @q
+  - if @search_user
+    %h5 Name:
+    %p#userName
+    %h5 Zoobars:
+    %p#userZoobars
+    %h5 Profile:
+    %p= profile_sanitize(@search_user.profile)
+
+    %span{:id => "zoobars", :class => @search_user.zoobars}
+  - else
+    .alert
+      No such user
+
+/ TODO: Add some cool animations
+%script
+  :plain
+    $('#userName').html(#{@q.inspect});
+    $('#userZoobars').html(eval($('#zoobars').prop('class')));

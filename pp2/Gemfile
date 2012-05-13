@@ -1,0 +1,12 @@
+source :rubygems
+gem 'rake'
+
+gem 'foreman'
+gem 'thin'
+
+gem 'activerecord'
+gem 'sqlite3'
+
+gem 'sinatra'
+gem 'haml'
+gem 'sanitize'

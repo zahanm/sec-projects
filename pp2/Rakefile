@@ -1,0 +1,10 @@
+require File.expand_path('../environment', __FILE__)
+
+namespace :db do
+  desc 'Update database schema'
+  task :migrate do
+    require 'models'
+    ActiveRecord::Migration.verbose = true
+    ActiveRecord::Migrator.migrate('db/migrate')
+  end
+end

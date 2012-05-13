@@ -1,0 +1,7 @@
+.page-header
+  %h1 Login
+%form.form-inline(method="post" action="/login")
+  %input(type="text" name="name" placeholder="Name" autofocus=true)
+  %input(type="password" name="password" placeholder="Password")
+  %button.btn(type="submit") Login
+  %button.btn(type="submit" name="register" value="yes") Register

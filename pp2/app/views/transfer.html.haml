@@ -1,0 +1,12 @@
+.page-header
+  %h1 Transfer
+%form.form-inline(method="post" action="/transfer")
+  %input(type="text" name="name" placeholder="Name" autofocus=true)
+  %input.input-mini(type="text" name="amount" placeholder="Amount")
+  %button.btn(type="submit") Transfer
+
+- if @attempted
+  - if @result
+    .alert Success!
+  - else
+    .alert Failure!

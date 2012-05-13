@@ -1,0 +1,19 @@
+.page-header
+  %h1 Profile
+%form.form-inline(method="post" action="/update")
+  %h3 Name:
+  %p= @user.name
+  / This wasn't a good idea, let's comment it out
+  /
+    %input{:type => 'text', :name => 'name', :value => html_escape(@user.name), :disabled => true}
+  %h3 Zoobars:
+  %p
+    %span#zoobars
+  %h3 Profile:
+  %textarea(name="profile")
+    = html_escape(@user.profile)
+  %p
+    %button.btn(type="submit") Update
+
+/ Dynamically load the current balance!
+%script(src="/zoobars.js")

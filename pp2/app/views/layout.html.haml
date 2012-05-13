@@ -1,0 +1,32 @@
+!!!
+%html
+  %head
+    %title= "Zoobar - #{@title || 'Page'}"
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %link(rel="stylesheet" href="/bootstrap.min.css")
+    %link(rel="stylesheet" href="/bootstrap-responsive.min.css")
+    / Normally we don't include big javascript early on, but this let's us use jQuery everywhere
+    %script(src="/jquery.min.js")
+  %body
+    .navbar
+      .navbar-inner
+        .container-fluid
+          %a.brand(href="/")
+            - if @user
+              %img(src="/secret/logo.png" height="20")
+            Zoobar Foundation
+          - if @user
+            %ul.nav
+              %li
+                %a(href="/") Profile
+                %li
+                  %a(href="/search") Search
+                %li
+                  %a(href="/transfer") Transfer
+            %ul.nav.pull-right
+              %li
+                %a(href="/logout") Logout
+    .container
+      = yield
+
+    %script(src="/bootstrap.min.js")

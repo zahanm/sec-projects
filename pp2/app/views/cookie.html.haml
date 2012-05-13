@@ -1,0 +1,13 @@
+!!!
+%html
+  %body
+    %script(src="/jquery.min.js")
+    %h1#result
+    %script
+      :plain
+        if (document.cookie == #{@cookie.inspect}) {
+          $('#result').text('Success!');
+        }
+        else {
+          $('#result').text('Failure!');
+        }
