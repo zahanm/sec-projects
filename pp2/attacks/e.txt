@@ -1,0 +1,7 @@
+
+<div>
+  hello world
+</div>
+<script type="text/javascript" charset="utf-8">
+  alert('hi');
+</script>
