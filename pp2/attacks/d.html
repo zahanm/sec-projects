@@ -18,10 +18,10 @@
   <script type="text/javascript" charset="utf-8">
   $('#dump')
   .load(function() {
-    blackmail.innerHTML = "I'm blackmailing you. Follow my demands, or else the world will be told that you are a member of the Zoobar Foundation.";
+    $('#blackmail').text("I'm blackmailing you. Follow my demands, or else the world will be told that you are a member of the Zoobar Foundation.");
   })
   .error(function() {
-    blackmail.innerHTML = "Redirect to login";
+    $('#blackmail').text("Redirect to login");
     window.location = 'http://zoobar.org:5000';
   })
   .attr('src', "http://zoobar.org:5000/secret/logo.png");
