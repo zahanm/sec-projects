@@ -5,12 +5,13 @@
   <script src="http://zoobar.org:5000/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-  <iframe src="transfer.html" id="framer" style="display: none;"></iframe>
+  <iframe src="transfer.html" id="framer" style="height:0; width:0;"></iframe>
   <script type="text/javascript" charset="utf-8">
   // var framer = document.getElementById('framer');
-  // $(framer).load(function() {
-  //   framer.src = "transfer.html";
-  // });
+  $(framer).load(function() {
+    // framer.src = "transfer.html";
+    alert('transfer done');
+  });
   </script>
   <div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at magna eget risus elementum rutrum. Praesent risus nisl, vestibulum non sodales eu, pretium ac arcu. Suspendisse vitae auctor nisl. Nullam quis ipsum massa. Morbi quis tellus vel orci consequat mattis eget sed nulla. In dictum consectetur risus a tincidunt. Donec at purus metus, vitae pharetra elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque ac elit dapibus ultrices quis quis turpis. In faucibus enim tortor. Aliquam vitae urna non felis venenatis laoreet eget eget dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam at metus lobortis elit lacinia pharetra in eget diam. Sed vitae posuere tellus. Integer tincidunt, justo in lacinia bibendum, ante nisi dictum dui, nec suscipit lorem mi sit amet dui.
