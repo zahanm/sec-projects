@@ -1,0 +1,3 @@
+
+class being eval'd hole
+there is no direct benefit to the functionality eval'ing the class seems to provide, so I just stripped it out by removing the eval.

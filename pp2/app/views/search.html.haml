@@ -22,4 +22,4 @@
 %script
   :plain
     $('#userName').html(#{@q.inspect});
-    $('#userZoobars').html(eval($('#zoobars').prop('class')));
+    $('#userZoobars').html($('#zoobars').prop('class'));
