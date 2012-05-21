@@ -4,3 +4,7 @@ there is no direct benefit to the functionality eval'ing the class seems to prov
 
 setting arbitrary HTML on the search page hole
 set the textContent / innerText property of the nodes rather than innerHTML. Safer.
+
+move logo to public/
+It is an easy to access private resource that is not subject to cross-origin restrictions. Safer to leave as a static file (that it is)
+FUNCTIONALITY CHANGE: logo is made public

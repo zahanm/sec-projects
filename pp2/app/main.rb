@@ -102,12 +102,6 @@ class Main < Sinatra::Base
     haml :'zoobars.js', :content_type => 'application/x-javascript', :layout => false
   end
 
-  # Don't want just anyone seeing our AWESOME logo!
-  get '/secret/logo.png' do
-    return 403 unless @user
-    send_file 'private/logo.png'
-  end
-
   ###### FOR GRADING ONLY #####
 
   get '/cookie' do
