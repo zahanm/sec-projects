@@ -1,3 +1,6 @@
 
 class being eval'd hole
 there is no direct benefit to the functionality eval'ing the class seems to provide, so I just stripped it out by removing the eval.
+
+setting arbitrary HTML on the search page hole
+set the textContent / innerText property of the nodes rather than innerHTML. Safer.
