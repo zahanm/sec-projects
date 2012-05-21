@@ -32,6 +32,10 @@ class Main < Sinatra::Base
       # Escape single-quotes in SQL statements
       sql.gsub "'", "\\\\'"
     end
+
+    def rand_seq(len)
+      return (0...len).map{ ('a'..'z').to_a[rand(26)] }.join
+    end
   end
 
   before do
@@ -49,6 +53,7 @@ class Main < Sinatra::Base
     end
 
     session[:user_id] = @user.id if @user
+    session[:logo_path] = rand_seq(10) + '.png'
     redirect to('/')
   end
 
@@ -100,6 +105,12 @@ class Main < Sinatra::Base
     @zoobars = (@user ? @user.zoobars : 0)
     # Haml isn't really designed for dynamic Javascript, but it works pretty well!
     haml :'zoobars.js', :content_type => 'application/x-javascript', :layout => false
+  end
+
+  # Don't want just anyone seeing our AWESOME logo!
+  get '/secret/:path' do
+    return 403 unless @user and params[:path] == session[:logo_path]
+    send_file 'private/logo.png'
   end
 
   ###### FOR GRADING ONLY #####

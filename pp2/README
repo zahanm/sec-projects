@@ -8,3 +8,7 @@ set the textContent / innerText property of the nodes rather than innerHTML. Saf
 move logo to public/
 It is an easy to access private resource that is not subject to cross-origin restrictions. Safer to leave as a static file (that it is)
 FUNCTIONALITY CHANGE: logo is made public
+
+access logo through randomly generated path that is set at login
+so it is accessed through a path like '/secret/ivvzkyjwti.png'
+FUNCTIONALITY RESTORED: logo is private again

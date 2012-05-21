@@ -13,7 +13,7 @@
         .container-fluid
           %a.brand(href="/")
             - if @user
-              %img(src="/logo.png" height="20")
+              %img(src="/secret/#{ session[:logo_path] }" height="20")
             Zoobar Foundation
           - if @user
             %ul.nav
