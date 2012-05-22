@@ -9,12 +9,9 @@
   %input(type="hidden" name="csrf" value="#{ session[:csrf] }")
   %h3 Zoobars:
   %p
-    %span#zoobars
+    %span#zoobars #{ @user.zoobars }
   %h3 Profile:
   %textarea(name="profile")
     = html_escape(@user.profile)
   %p
     %button.btn(type="submit") Update
-
-/ Dynamically load the current balance!
-%script(src="/zoobars.js")

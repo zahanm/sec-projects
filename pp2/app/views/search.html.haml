@@ -7,19 +7,12 @@
 - if @q
   - if @search_user
     %h5 Name:
-    %p#userName
+    %p#userName #{ @q }
     %h5 Zoobars:
-    %p#userZoobars
+    %p#userZoobars #{ @search_user.zoobars }
     %h5 Profile:
     %p= profile_sanitize(@search_user.profile)
 
-    %span{:id => "zoobars", :class => @search_user.zoobars}
   - else
     .alert
       No such user
-
-/ TODO: Add some cool animations
-%script
-  :plain
-    $('#userName').text(#{@q.inspect});
-    $('#userZoobars').text($('#zoobars').prop('class'));
