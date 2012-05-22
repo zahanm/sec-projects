@@ -6,6 +6,7 @@
   / This wasn't a good idea, let's comment it out
   /
     %input{:type => 'text', :name => 'name', :value => html_escape(@user.name), :disabled => true}
+  %input(type="hidden" name="csrf" value="#{ session[:csrf] }")
   %h3 Zoobars:
   %p
     %span#zoobars

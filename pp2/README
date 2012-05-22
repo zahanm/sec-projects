@@ -12,3 +12,7 @@ FUNCTIONALITY CHANGE: logo is made public
 access logo through randomly generated path that is set at login
 so it is accessed through a path like '/secret/ivvzkyjwti.png'
 FUNCTIONALITY RESTORED: logo is private again
+
+CSRF protection
+when rendering a form, include random 20 character sequence to deter cross site request forgery
+used for all POST and PUT calls that change information server side

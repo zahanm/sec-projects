@@ -42,6 +42,16 @@ class Main < Sinatra::Base
     @user = User.find_by_id(session[:user_id])
   end
 
+  before do
+    # csrf protection
+    if ['POST', 'PUT'].include? request.request_method
+      halt 403 unless params[:csrf] == session[:csrf]
+    end
+    if [ '/', '/transfer' ].include? request.path_info
+      session[:csrf] = rand_seq(20)
+    end
+  end
+
   post '/login' do
     if params[:register]
       @user = User.create! :name => params[:name], :password => params[:password]

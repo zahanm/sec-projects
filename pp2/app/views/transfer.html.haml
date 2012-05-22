@@ -3,6 +3,7 @@
 %form.form-inline(method="post" action="/transfer")
   %input(type="text" name="name" placeholder="Name" autofocus=true)
   %input.input-mini(type="text" name="amount" placeholder="Amount")
+  %input(type="hidden" name="csrf" value="#{ session[:csrf] }")
   %button.btn(type="submit") Transfer
 
 - if @attempted

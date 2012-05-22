@@ -3,5 +3,6 @@
 %form.form-inline(method="post" action="/login")
   %input(type="text" name="name" placeholder="Name" autofocus=true)
   %input(type="password" name="password" placeholder="Password")
+  %input(type="hidden" name="csrf" value="#{ session[:csrf] }")
   %button.btn(type="submit") Login
   %button.btn(type="submit" name="register" value="yes") Register
