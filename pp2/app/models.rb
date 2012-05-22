@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
       self.reload
       user.reload
 
+	  return false if amount <= 0
       return false if self.zoobars < amount
 
       self.zoobars -= amount

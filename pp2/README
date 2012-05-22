@@ -35,6 +35,10 @@ No need for zoobars.js or jQuery.
 Render the html consitently in server-side HAML templating language.
 This change decreases attack surface area from javascript in general.
 
+Fixed Transfer Negative Zoobars Bug
+Added check that amount of zoobars to be transfered in models.rb is not <= 0.
+This bug allowed you to steal zoobars by transferring another user negative zoobars.
+
 ======
 
 CHOSE NOT TO IMPLEMENT:
