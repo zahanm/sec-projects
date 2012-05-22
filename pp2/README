@@ -30,3 +30,10 @@ rm all Javascript deps
 No need for zoobars.js or jQuery
 Render the html consitently in server-side HAML templating language
 just decreases attack surface area from javascript in general
+
+======
+
+CHOSE NOT TO IMPLEMENT:
+
+check referrer header
+In this forum post https://courseware.stanford.edu/pg/forum/question/301279/no-referer-field we are told that we should support browsers that strip out the referrer field, in which case we decided that our csrf protection \was already strong enough without this additional check that we'd have to waive anyhow
