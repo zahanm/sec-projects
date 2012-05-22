@@ -28,11 +28,6 @@ class Main < Sinatra::Base
       )
     end
 
-    def sql_sanitize(sql)
-      # Escape single-quotes in SQL statements
-      sql.gsub "'", "\\\\'"
-    end
-
     def rand_seq(len)
       return (0...len).map{ ('a'..'z').to_a[rand(26)] }.join
     end
