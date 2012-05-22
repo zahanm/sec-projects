@@ -1,39 +1,43 @@
+Zoobar.org Vulnerability Fixes
 
-class being eval'd hole
-there is no direct benefit to the functionality eval'ing the class seems to provide, so I just stripped it out by removing the eval.
+Prevented Running Arbitrary Javascript on the Search Page
+There is no direct functionality benefit created by eval'ing the class, so I just stripped it out by removing the eval.
+This solution was later superseded by the final solution below.
 ORIGINAL ATTACKS: (e)
 
-setting arbitrary HTML on the search page hole
-set the textContent / innerText property of the nodes rather than innerHTML. Safer.
+Prevented Setting Arbitrary HTML on the Search Page
+First Solution: Set the textContent/innerText property of the nodes rather than innerHTML. Safer.
+Final Solution: Let Ruby set the search parameters using haml to auto-escape input.
 ORIGINAL ATTACKS: (a) and (e)
 
-move logo to public/
-It is an easy to access private resource that is not subject to cross-origin restrictions. Safer to leave as a static file (that it is)
+Move logo to public/
+It is an easy to access private resource that is not subject to cross-origin restrictions. Safer to leave as a static file (that it is).
 FUNCTIONALITY CHANGE: logo is made public
 ORIGINAL ATTACKS: (d)
 
-access logo through randomly generated path that is set at login
-so it is accessed through a path like '/secret/ivvzkyjwti.png'
+Prevented Using Logo to Hijack Login
+Access logo through randomly generated path that is set at login.
+So it is accessed through a path like '/secret/ivvzkyjwti.png'
 FUNCTIONALITY RESTORED: logo is private again
 ORIGINAL ATTACKS: (d)
 
 CSRF protection
-when rendering a form, include random 20 character sequence to deter cross site request forgery
-used for all POST and PUT calls that change information server side
+When rendering a form, include random 20 character sequence to deter cross site request forgery.
+Used for all POST and PUT calls that change information server side.
 ORIGINAL ATTACKS: (b) and (c)
 
 SQL Injection
-Changed user login to use parameterized SQL from ActiveRecord framework rather than self-implemented sanitization.
+Changed user login Ruby logic to use parameterized SQL from ActiveRecord framework rather than self-implemented sanitization.
 ORIGINAL ATTACKS: (c)
 
-rm all Javascript deps
-No need for zoobars.js or jQuery
-Render the html consitently in server-side HAML templating language
-just decreases attack surface area from javascript in general
+Removed all Javascript deps
+No need for zoobars.js or jQuery.
+Render the html consitently in server-side HAML templating language.
+This change decreases attack surface area from javascript in general.
 
 ======
 
 CHOSE NOT TO IMPLEMENT:
 
-check referrer header
-In this forum post https://courseware.stanford.edu/pg/forum/question/301279/no-referer-field we are told that we should support browsers that strip out the referrer field, in which case we decided that our csrf protection \was already strong enough without this additional check that we'd have to waive anyhow
+Check Referrer Header
+In this forum post https://courseware.stanford.edu/pg/forum/question/301279/no-referer-field we are told that we should support browsers that strip out the referrer field, in which case we decided that our csrf protection was already strong enough without this additional check that we'd have to waive anyhow.
