@@ -16,3 +16,6 @@ FUNCTIONALITY RESTORED: logo is private again
 CSRF protection
 when rendering a form, include random 20 character sequence to deter cross site request forgery
 used for all POST and PUT calls that change information server side
+
+SQL Injection
+Changed user login to use parameterized SQL from ActiveRecord framework rather than self-implemented sanitization. 
