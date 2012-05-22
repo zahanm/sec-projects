@@ -1,5 +1,8 @@
 Zoobar.org Vulnerability Fixes
 
+Zahan Malkani zahanm
+Megan Kanne mkanne
+
 Prevented Running Arbitrary Javascript on the Search Page
 There is no direct functionality benefit created by eval'ing the class, so I just stripped it out by removing the eval.
 This solution was later superseded by the final solution below.
