@@ -107,12 +107,6 @@ class Main < Sinatra::Base
     haml :'transfer.html'
   end
 
-  get '/zoobars.js' do
-    @zoobars = (@user ? @user.zoobars : 0)
-    # Haml isn't really designed for dynamic Javascript, but it works pretty well!
-    haml :'zoobars.js', :content_type => 'application/x-javascript', :layout => false
-  end
-
   # Don't want just anyone seeing our AWESOME logo!
   get '/secret/:path' do
     return 403 unless @user and params[:path] == session[:logo_path]
