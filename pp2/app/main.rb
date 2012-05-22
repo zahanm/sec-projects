@@ -53,10 +53,10 @@ class Main < Sinatra::Base
     else
       # If there is a 'guest' user, then no password is needed to login
       if params[:name] == 'guest'
-       @user = User.find_by_name(params[:name])
-	  else
-	   @user = User.find_by_name_and_password(params[:name], params[:password])
-	  end
+        @user = User.find_by_name(params[:name])
+      else
+        @user = User.find_by_name_and_password(params[:name], params[:password])
+      end
     end
     session[:user_id] = @user.id if @user
     session[:logo_path] = rand_seq(10) + '.png'
