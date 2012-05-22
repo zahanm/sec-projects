@@ -1,21 +1,27 @@
 
 class being eval'd hole
 there is no direct benefit to the functionality eval'ing the class seems to provide, so I just stripped it out by removing the eval.
+ORIGINAL ATTACKS: (e)
 
 setting arbitrary HTML on the search page hole
 set the textContent / innerText property of the nodes rather than innerHTML. Safer.
+ORIGINAL ATTACKS: (a) and (e)
 
 move logo to public/
 It is an easy to access private resource that is not subject to cross-origin restrictions. Safer to leave as a static file (that it is)
 FUNCTIONALITY CHANGE: logo is made public
+ORIGINAL ATTACKS: (d)
 
 access logo through randomly generated path that is set at login
 so it is accessed through a path like '/secret/ivvzkyjwti.png'
 FUNCTIONALITY RESTORED: logo is private again
+ORIGINAL ATTACKS: (d)
 
 CSRF protection
 when rendering a form, include random 20 character sequence to deter cross site request forgery
 used for all POST and PUT calls that change information server side
+ORIGINAL ATTACKS: (b) and (c)
 
 SQL Injection
-Changed user login to use parameterized SQL from ActiveRecord framework rather than self-implemented sanitization. 
+Changed user login to use parameterized SQL from ActiveRecord framework rather than self-implemented sanitization.
+ORIGINAL ATTACKS: (c)
