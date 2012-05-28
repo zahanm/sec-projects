@@ -50,7 +50,19 @@ username: anonymous
 password: IEUser@
 
 identify active and passive ftp, explain difference:
+The server defaults to active mode, and the PORT command would specify a port to connect to for a RETR.
+But in this trace, there seems to be no instance of an active ftp transfer.
+Probably because the Stanford ResComp firewall would block incoming connections.
 
+The PASV command puts the server into passive mode.
+The server respondes with something like
+  227 Entering Passive Mode (64,4,30,34,53,188).
+where,
+Passive IP address: ftp.microsoft.akadns.net (64.4.30.34)
+Passive port: 13756
+
+In passive mode, the server will wait for the client to establish a connection with it rather than attempting to connect to a client-specified port.
+All the files are downloaded this way.
 
 What file(s) were downloaded? Give complete download path and their sizes:
 /Softlib/MSLFILES/110to130.exe
