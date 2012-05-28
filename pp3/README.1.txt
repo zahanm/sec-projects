@@ -1,6 +1,7 @@
 CS 155 Project 3
 
 Zahan Malkani
+Megan Kanne
 
 Part 1
 =======
