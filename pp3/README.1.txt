@@ -45,3 +45,86 @@ Cipher Suite: TLS_RSA_WITH_RC4_128_SHA (0x0005)
 ---
 
 3.
+login name and password for connecting to ftp server:
+username: anonymous
+password: IEUser@
+
+identify active and passive ftp, explain difference:
+
+
+What file(s) were downloaded? Give complete download path and their sizes:
+/Softlib/MSLFILES/110to130.exe
+size: 587201
+
+/Softlib/MSLFILES/11P32UPD.EXE
+size: 169648
+
+/Softlib/MSLFILES/120to130.exe
+size: 495102
+
+/Softlib/MSLFILES/1TOMANY.EXE
+size: 22055
+
+/Softlib/MSLFILES/211SP295.EXE
+size: 3848297
+
+/Softlib/MSLFILES/211SP2AC.EXE
+size: 6882562
+
+/Softlib/MSLFILES/211SP2AS.EXE
+size: 12015436
+
+/Softlib/MSLFILES/211SP2CL.EXE
+size: 4168041
+
+/Softlib/MSLFILES/211SP2EA.EXE
+size: 6045055
+
+/Softlib/MSLFILES/211SP2EI.EXE
+size: 5289251
+
+/Softlib/MSLFILES/211SP2IC.EXE
+size: 4393740
+
+/Softlib/MSLFILES/211SP2IS.EXE
+size: 9911981
+
+/Softlib/MSLFILES/211SP2TN.EXE
+size: 2660776
+
+/Softlib/MSLFILES/216641up.exe
+size: 135680
+
+/Softlib/MSLFILES/21P32UPD.EXE
+size: 218288
+
+/Softlib/MSLFILES/30SP395R.EXE
+size: 7901424
+
+/Softlib/MSLFILES/30SP395U.EXE
+size: 3637560
+
+/Softlib/MSLFILES/30SP3ACR.EXE
+size: 22757448
+
+/Softlib/MSLFILES/30SP3ACU.EXE
+size: 10105944
+
+/Softlib/MSLFILES/30SP3AHS.EXE
+size: 1137784
+
+/Softlib/MSLFILES/30SP3AS.EXE
+size: 25298776
+
+/Softlib/MSLFILES/30SP3CLR.EXE
+size: 3869376
+
+/Softlib/MSLFILES/30SP3CLU.EXE
+size: 3698160
+
+/Softlib/MSLFILES/30SP3ICR.EXE
+size: 18824648
+
+---
+
+4.
