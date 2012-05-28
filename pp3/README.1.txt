@@ -13,24 +13,21 @@ crypto.stanford.edu 171.64.78.27
 ---
 
 2.
+This is tracking an https connection to 74.125.19.104 (google.com)
 name of certificate issuing authority:
-Comodo CA Limited
+Thawte Consulting (Pty) Ltd.
 
 encryption algorithm:
-Algorithm Id: 1.2.840.113549.1.1.5 (shaWithRSAEncryption)
+RSAEncryption
 
 key and size of key used for encryption:
-
-                                     46 fa cb 59 84 3e   ........ .<F..Y.>
-00d0  59 d2 5c 71 22 86 1d 1f  08 51 38 a3 e9 09 dc 02   Y.\q"... .Q8.....
-00e0  fe 70 06 3c d0 71 76 82  45 51 32 ce 2a 10 a4 ad   .p.<.qv. EQ2.*...
-00f0  4e b2 f0 31 b6 64 d0 1a  96 d8 9d 15 3b ce bb 0d   N..1.d.. ....;...
-0100  bc e3 3d 0f 9e 33                                  ..=..3
-
+I was unsure of whih key we were expected to provide, so this is the client key, provided during the ClientKeyExchange step of TLS.
+client key:
+8715431518426a9b3dea9437d1304c506b792893ffbf9fdfe61ced0213b83847c243c64735da68a28d20f429aba0a823eca4c47dd21d79749c9fdb4001ca7420a5d383dcde005e34b2fa45447acfc995e7f8d617edbc37c719796aceaf63d410d10a43ca2c89471e4116a8bf88a5af5d13be39de6c82c79217a8f23c1002ff84
 Length: 128
 
 expiration date and time on issued certificate:
-utcTime: 10-07-23 23:59:59 (UTC)
+utcTime: 11-12-18 23:59:59 (UTC)
 
 browser supported:
 Cipher Spec: TLS_RSA_WITH_RC4_128_SHA (0x000005)
