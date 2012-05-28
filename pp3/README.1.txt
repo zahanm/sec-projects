@@ -83,4 +83,20 @@ wget-1.12.tar.gz : 2464747 bytes
 ---
 
 4.
+It appears there are three tracert's from that source address.
+I am going to focus on the chronologically first one.
 
+Destination: www.l.google.com (74.125.19.103)
+
+Src: dn800cad0e.stanford.edu (128.12.173.14)
+Hop: 128.12.172.1 (128.12.172.1)
+Hop: 172.20.10.33 (172.20.10.33)
+Hop: boundaryb-rtr.stanford.edu (171.64.1.137)
+Hop: dc-oak-dc2--ucd-3ge.cenic.net (137.164.23.41)
+Hop: dc-svl-core1--oak-agg1-10ge.cenic.net (137.164.47.115)
+Hop: dc-svl-px1--svl-core1-10ge-1.cenic.net (137.164.46.205)
+Hop: 137.164.131.61 (137.164.131.61)
+Hop: 137.164.130.94 (137.164.130.94)
+Hop: 216.239.49.250 (216.239.49.250)
+Hop: 209.85.249.30 (209.85.249.30)
+Dst: www.l.google.com (74.125.19.103)
