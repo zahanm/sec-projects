@@ -48,10 +48,9 @@ typedef map<packetInfo_t, bool, packetComp> packetmap_t;
 
 /*Functions*/
 
-void Report(map_t &map, packetmap_t &syns, packetmap_t &synacks){
+void Report(map_t &map, packetmap_t &syns){
   //go through connections and report any ratios above 3
   printf("number of unique syns is: %d\n", (int)syns.size());
-  printf("number of unique synacks is: %d\n", (int)synacks.size());
   printf("number of unique ipdst pairs is: %d\n", (int)map.size());
 }
 
@@ -76,12 +75,12 @@ void CheckRatio( map_t::iterator it ) {
   }
 }
 
-void UpdateMap(map_t &map, packetmap_t &syns, packetmap_t &synacks, struct ip  *ip_hdr, struct tcphdr *tcp_hdr){
+void UpdateMap(map_t &map, packetmap_t &syns, struct ip *ip_hdr, struct tcphdr *tcp_hdr){
   //printf("flags in binary of packet is: %x", tcp_hdr->th_flags);
-  packetInfo_t curPacket = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, ntohs(tcp_hdr->th_sport), ntohs(tcp_hdr->th_dport), tcp_hdr->th_seq};
   map_t::iterator it;
   if ( (TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags) ) {
     //determine if already seen in syns
+    packetInfo_t curPacket = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, ntohs(tcp_hdr->th_sport), ntohs(tcp_hdr->th_dport), tcp_hdr->th_seq};
     //printf("syn found\n");
     if (syns.count(curPacket) < 1) {
       //if not seen add to syns
@@ -101,10 +100,9 @@ void UpdateMap(map_t &map, packetmap_t &syns, packetmap_t &synacks, struct ip  *
       CheckRatio(it);
     }
   } else if ( (TH_SYN & tcp_hdr->th_flags) && (TH_ACK & tcp_hdr->th_flags) ) {
-    //do stuff with syn-ack
-    if (synacks.count(curPacket) < 1) {
-      // de-duplicated synacks too
-      synacks.insert(pair<packetInfo_t, bool>(curPacket, 1));
+    packetInfo_t matching = {ip_hdr->ip_dst.s_addr, ip_hdr->ip_src.s_addr, ntohs(tcp_hdr->th_dport), ntohs(tcp_hdr->th_sport), tcp_hdr->th_ack - 1};
+    if (syns.count(matching) > 0) {
+      // if there is a matching syn for this syn-ack
       keys_t key = {ip_hdr->ip_dst.s_addr, ip_hdr->ip_src.s_addr, ntohs(tcp_hdr->th_dport), ntohs(tcp_hdr->th_sport)};
       //find and increment
       it = map.find(key);
@@ -114,7 +112,7 @@ void UpdateMap(map_t &map, packetmap_t &syns, packetmap_t &synacks, struct ip  *
   }
 }
 
-void ReadPacketData(pcap_t *file, map_t &map, packetmap_t &syns, packetmap_t &synacks){
+void ReadPacketData(pcap_t *file, map_t &map, packetmap_t &syns){
   const u_char *packet;
   struct pcap_pkthdr h;
   packet = pcap_next(file, &h);
@@ -122,7 +120,7 @@ void ReadPacketData(pcap_t *file, map_t &map, packetmap_t &syns, packetmap_t &sy
     struct ip *ip_hdr = (struct ip*) (packet+14); // 14 is the offset for the Ethernet header
     struct tcphdr *tcp_hdr = (struct tcphdr*) (packet + 14 + ip_hdr->ip_hl * 4);
     PrintPacketSrcDest(ip_hdr, tcp_hdr);
-    UpdateMap(map, syns, synacks, ip_hdr, tcp_hdr);
+    UpdateMap(map, syns, ip_hdr, tcp_hdr);
     packet = pcap_next(file, &h);
   }
 }
@@ -145,10 +143,9 @@ int main(int argc, const char *argv[]){
   }
   map_t connections;
   packetmap_t syns;
-  packetmap_t synacks;
   pcap_t *trace;
   trace = OpenFile(argv[1]);
-  ReadPacketData(trace, connections, syns, synacks);
-  Report(connections, syns, synacks);
+  ReadPacketData(trace, connections, syns);
+  Report(connections, syns);
   exit(0);
 }
