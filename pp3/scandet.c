@@ -73,7 +73,7 @@ void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_h
   //printf("flags in binary of packet is: %x", tcp_hdr->th_flags);
   synInfo_t curSyn = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport, tcp_hdr->th_seq};
   map_t::iterator it;
-  if((TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags)){
+  if ((TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags)) {
     //determine if already seen in syns
     //printf("syn found\n");
     if(syns.count(curSyn) < 1){
@@ -81,6 +81,8 @@ void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_h
       syns.insert(pair<synInfo_t, bool>(curSyn, 1));
       //printf("inserted syn\n");
       //increment syns in correct struct of map
+      // unsigned short sport = tcp_hdr->th_sport >> 8 | tcp_hdr->th_sport << 8;
+      // unsigned short dport = tcp_hdr->th_dport >> 8 | tcp_hdr->th_dport << 8;
       keys_t key = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport};
       if (map.count(key) < 1) {
         //insert new pair
@@ -95,6 +97,8 @@ void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_h
     }
   } else if ( (TH_SYN & tcp_hdr->th_flags) && (TH_ACK & tcp_hdr->th_flags) ) {
     //do stuff with syn-ack
+    // unsigned short sport = tcp_hdr->th_sport >> 8 | tcp_hdr->th_sport << 8;
+    // unsigned short dport = tcp_hdr->th_dport >> 8 | tcp_hdr->th_dport << 8;
     keys_t key = {ip_hdr->ip_dst.s_addr, ip_hdr->ip_src.s_addr, tcp_hdr->th_dport, tcp_hdr->th_sport};
     if (map.count(key) < 1) {
       //insert new pair
