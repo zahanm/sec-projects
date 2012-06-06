@@ -8,8 +8,8 @@
 using namespace std;
 
 typedef struct key{
-  int src;
-  int dest;
+  long src;
+  long dest;
 }keys_t;
 
 typedef struct synInfo{
@@ -50,7 +50,7 @@ void Report(map_t &map, syn_t &syns){
 
 void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_hdr){
   //printf("flags in binary of packet is: %x", tcp_hdr->th_flags);
-  if(TH_SYN & tcp_hdr->th_flags){
+  if((TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags)){
     synInfo_t curSyn = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport, tcp_hdr->th_seq};
     //determine if already seen in syns
     //printf("syn found\n");
@@ -59,9 +59,14 @@ void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_h
       syns.insert(pair<synInfo_t, bool>(curSyn, 1));
       //printf("inserted syn\n");
       //increment syns in correct struct of map
-      
+      keys_t key = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr};
+      if(map.count(key) < 1){
+        //insert new pair
+      }else{
+        //find and increment
+      } 
     }
-  }else if(TH_ACK & tcp_hdr->th_flags > 0){
+  }else if(TH_ACK & tcp_hdr->th_flags){
     //do stuff with ack 
   }
 }
