@@ -1,5 +1,7 @@
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <pcap.h>
 #include <netinet/ip.h>
 #include <netinet/tcp.h>
@@ -52,9 +54,25 @@ void Report(map_t &map, syn_t &syns){
   printf("number of unique ipdst pairs is: %d\n", (int)map.size());
 }
 
+void CheckRatio( value_t val ) {
+  if ( !val.warned ) {
+    if ( val.synacks == 0 && val.syns > 3) {
+      printf( "Warning, syns to synacks ratio exceeded.\n");
+      printf( "A malicious agent might be \'scanning\' the network.\n");
+      val.warned = true;
+    }
+    if ( val.synacks > 0 && ( (float) val.syns / val.synacks ) > 3 ) {
+      printf( "Warning, syns to synacks ratio exceeded.\n");
+      printf( "A malicious agent might be \'scanning\' the network.\n");
+      val.warned = true;
+    }
+  }
+}
+
 void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_hdr){
   //printf("flags in binary of packet is: %x", tcp_hdr->th_flags);
   synInfo_t curSyn = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport, tcp_hdr->th_seq};
+  map_t::iterator it;
   if((TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags)){
     //determine if already seen in syns
     //printf("syn found\n");
@@ -64,31 +82,30 @@ void UpdateMap(map_t &map, syn_t &syns, struct ip  *ip_hdr, struct tcphdr *tcp_h
       //printf("inserted syn\n");
       //increment syns in correct struct of map
       keys_t key = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport};
-      if(map.count(key) < 1){
+      if (map.count(key) < 1) {
         //insert new pair
-        value_t val = {1,0,false};
+        printf("Adding %ld:%d => %ld:%d to src-dst map\n", key.src, key.srcPort, key.dest, key.destPort);
+        value_t val = {0,0,false};
         map.insert(pair<keys_t,value_t>(key,val));
-      }else{
-        //find and increment
-        map_t::iterator it;
-        it = map.find(key);
-        it->second.syns++;
-        if ( !it->second.warned ) {
-          if ( it->second.synacks == 0 && it->second.syns > 3) {
-            printf( "Warning, syns to synacks ratio exceeded.\n");
-            printf( "A malicious agent might be \'scanning\' the network.\n");
-            it->second.warned = true;
-          }
-          if ( it->second.synacks > 0 && ( (float) it->second.syns / it->second.synacks ) > 3 ) {
-            printf( "Warning, syns to synacks ratio exceeded.\n");
-            printf( "A malicious agent might be \'scanning\' the network.\n");
-            it->second.warned = true;
-          }
-        }
       }
+      //find and increment
+      it = map.find(key);
+      it->second.syns++;
+      CheckRatio(it->second);
     }
-  }else if((TH_SYN & tcp_hdr->th_flags) && (TH_ACK & tcp_hdr->th_flags)) {
+  } else if ( (TH_SYN & tcp_hdr->th_flags) && (TH_ACK & tcp_hdr->th_flags) ) {
     //do stuff with syn-ack
+    keys_t key = {ip_hdr->ip_dst.s_addr, ip_hdr->ip_src.s_addr, tcp_hdr->th_dport, tcp_hdr->th_sport};
+    if (map.count(key) < 1) {
+      //insert new pair
+      printf("Adding %ld:%d => %ld:%d to src-dst map\n", key.src, key.srcPort, key.dest, key.destPort);
+      value_t val = {0,0,false};
+      map.insert(pair<keys_t,value_t>(key,val));
+    }
+    //find and increment
+    it = map.find(key);
+    it->second.synacks++;
+    CheckRatio(it->second);
   }
 }
 
@@ -110,7 +127,7 @@ pcap_t *OpenFile(const char *fname){
   file = pcap_open_offline(fname, errbuf);
   if(file == NULL){
     printf("%s\n", errbuf);
-    exit(1); 
+    exit(1);
   }
   return file;
 }
