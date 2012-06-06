@@ -54,6 +54,11 @@ void Report(map_t &map, syn_t &syns){
   printf("number of unique ipdst pairs is: %d\n", (int)map.size());
 }
 
+void PrintPacketSrcDest(struct ip  *ip_hdr, struct tcphdr *tcp_hdr) {
+  printf("%d.%d.%d.%d", (ip_hdr->ip_src.s_addr) & 0xff, (ip_hdr->ip_src.s_addr >> 8) & 0xff, (ip_hdr->ip_src.s_addr >> 16) & 0xff, (ip_hdr->ip_src.s_addr >> 24) & 0xff);
+  printf(" %d.%d.%d.%d\n", (ip_hdr->ip_dst.s_addr) & 0xff, (ip_hdr->ip_dst.s_addr >> 8) & 0xff, (ip_hdr->ip_dst.s_addr >> 16) & 0xff, (ip_hdr->ip_dst.s_addr >> 24) & 0xff);
+}
+
 void CheckRatio( value_t val ) {
   if ( !val.warned ) {
     if ( val.synacks == 0 && val.syns > 3) {
@@ -120,6 +125,7 @@ void ReadPacketData(pcap_t *file, map_t &map, syn_t &syns){
   while(packet != NULL){
     struct ip *ip_hdr = (struct ip*) (packet+14); // 14 is the offset for the Ethernet header
     struct tcphdr *tcp_hdr = (struct tcphdr*) (packet + 14 + ip_hdr->ip_hl * 4);
+    PrintPacketSrcDest(ip_hdr, tcp_hdr);
     UpdateMap(map, syns, ip_hdr, tcp_hdr);
     packet = pcap_next(file, &h);
   }
