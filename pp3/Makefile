@@ -6,7 +6,7 @@
 
 # It is likely that default C compiler is already gcc, but explicitly
 # set, just to be sure
-CC = gcc
+CC = g++
 
 # The CFLAGS variable sets compile flags for gcc:
 #  -g          compile with debug information
@@ -15,13 +15,13 @@ CC = gcc
 #  -O0         do not optimize generated code
 #  -std=gnu99  use the Gnu C99 standard language definition
 #  -m32        emit code for IA32 architecture
-CFLAGS = -g -Wall -pedantic -O0 -std=gnu99 -m32
+CFLAGS = -g -Wall -pedantic -O0 -m32
 
 
 # The LDFLAGS variable sets flags for linker
 #  -lm    link in libm (math library)
 #  -m32	  link with IA32 libraries
-LDFLAGS = -lm -m32
+LDFLAGS = -lm -m32 -lpcap
 
 # In this section, you list the files that are part of the project.
 # If you add/change names of header/source files, here is where you
