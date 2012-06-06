@@ -68,7 +68,7 @@ void CheckRatio( map_t::iterator it ) {
       printf( "A malicious agent might be \'scanning\' the network.\n");
       it->second.warned = true;
     }
-    if ( it->second.synacks > 0 && ( (float) it->second.syns / it->second.synacks ) >= 3 ) {
+    else if ( it->second.synacks > 0 && ( (float) it->second.syns / it->second.synacks ) > 3 ) {
       printf( "Warning, syns to synacks ratio exceeded.\n");
       printf( "A malicious agent might be \'scanning\' the network.\n");
       it->second.warned = true;
@@ -78,9 +78,9 @@ void CheckRatio( map_t::iterator it ) {
 
 void UpdateMap(map_t &map, packetmap_t &syns, packetmap_t &synacks, struct ip  *ip_hdr, struct tcphdr *tcp_hdr){
   //printf("flags in binary of packet is: %x", tcp_hdr->th_flags);
-  packetInfo_t curPacket = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport, tcp_hdr->th_seq};
+  packetInfo_t curPacket = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, ntohs(tcp_hdr->th_sport), ntohs(tcp_hdr->th_dport), tcp_hdr->th_seq};
   map_t::iterator it;
-  if ((TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags)) {
+  if ( (TH_SYN & tcp_hdr->th_flags) && !(TH_ACK & tcp_hdr->th_flags) ) {
     //determine if already seen in syns
     //printf("syn found\n");
     if (syns.count(curPacket) < 1) {
@@ -88,12 +88,10 @@ void UpdateMap(map_t &map, packetmap_t &syns, packetmap_t &synacks, struct ip  *
       syns.insert(pair<packetInfo_t, bool>(curPacket, 1));
       //printf("inserted syn\n");
       //increment syns in correct struct of map
-      // unsigned short sport = (tcp_hdr->th_sport >> 8) | (tcp_hdr->th_sport << 8);
-      // unsigned short dport = (tcp_hdr->th_dport >> 8) | (tcp_hdr->th_dport << 8);
-      keys_t key = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, tcp_hdr->th_sport, tcp_hdr->th_dport};
+      keys_t key = {ip_hdr->ip_src.s_addr, ip_hdr->ip_dst.s_addr, ntohs(tcp_hdr->th_sport), ntohs(tcp_hdr->th_dport)};
       if (map.count(key) < 1) {
         //insert new pair
-        printf("Adding %ld: %d => %ld: %d to src-dst map\n", key.src, key.srcPort, key.dest, key.destPort);
+        // printf("Adding %ld: %d => %ld: %d to src-dst map\n", key.src, key.srcPort, key.dest, key.destPort);
         value_t val = {0,0,false};
         map.insert(pair<keys_t,value_t>(key,val));
       }
@@ -105,10 +103,9 @@ void UpdateMap(map_t &map, packetmap_t &syns, packetmap_t &synacks, struct ip  *
   } else if ( (TH_SYN & tcp_hdr->th_flags) && (TH_ACK & tcp_hdr->th_flags) ) {
     //do stuff with syn-ack
     if (synacks.count(curPacket) < 1) {
+      // de-duplicated synacks too
       synacks.insert(pair<packetInfo_t, bool>(curPacket, 1));
-      // unsigned short sport = (tcp_hdr->th_sport >> 8) | (tcp_hdr->th_sport << 8);
-      // unsigned short dport = (tcp_hdr->th_dport >> 8) | (tcp_hdr->th_dport << 8);
-      keys_t key = {ip_hdr->ip_dst.s_addr, ip_hdr->ip_src.s_addr, tcp_hdr->th_dport, tcp_hdr->th_sport};
+      keys_t key = {ip_hdr->ip_dst.s_addr, ip_hdr->ip_src.s_addr, ntohs(tcp_hdr->th_dport), ntohs(tcp_hdr->th_sport)};
       //find and increment
       it = map.find(key);
       it->second.synacks++;
