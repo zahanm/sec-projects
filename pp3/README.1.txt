@@ -1,4 +1,4 @@
-CS 155 Project 3
+Project 3
 
 Zahan Malkani
 Megan Kanne
