@@ -1,4 +1,4 @@
-CS 155 Project 3 Part 2
+Project 3 Part 2
 
 Zahan Malkani: zahanm@stanford.edu
 Megan Kanne: mkanne@stanford.edu
